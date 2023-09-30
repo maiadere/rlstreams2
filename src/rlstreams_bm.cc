@@ -51,7 +51,7 @@ inline std::string Serialize(CameraWrapper& camera, BallWrapper ball, ArrayWrapp
 	return ss.str();
 }
 
-#define DEV
+//#define DEV
 #ifdef DEV
 constexpr auto DEFAULT_REC_PATH = "C:\\Users\\Aku\\Desktop\\rlstreams\\test_rec";
 #else
