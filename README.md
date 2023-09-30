@@ -13,9 +13,11 @@ RLStreams2 is a plugin for bakkesmod that allows you to record multiple passes (
 1. Download latest version from [Releases](https://github.com/nemuiidere/rlstreams2/releases).
 
 2. Copy `rlstreams2.dll` to your bakkesmod `plugins` directory.
+
 ![bakkesmod open directory](./images/1.png)
 
 3. Add shader directory to ReShade, then reload shaders.
+
 ![reshade effect search paths](./images/2.png)
 
 4. Make sure the addon is loaded in ReShade correctly.
@@ -36,7 +38,9 @@ Next, go to `Plugins` tab in bakkesmod, and configure the plugin for your needs.
 - File name is self-explanatory too. `.avi` extension will be added to the video files, and `.txt` to the camera file.
 
 - Framerate controls what framerate the recording will be, you need to make sure your in-game framerate matches is **while recording**, so it's the best to figure out what framerate you get while recording with uncapped framerate before locking it.
+
 ![framerate settings](./images/6.png)
+
 If you record custom pass the actual framerate will be divided by 2, because of how custom pass works. But you should make sure that this framerate matches the in-game framerate in that case, otherwise the video will be sped up/slowed down.
 *I've figured that 30 works for me with depth map and normal map (if you choose more passes to record at once, it will obviously use more of your CPU so your framerate will be lower).*
 
