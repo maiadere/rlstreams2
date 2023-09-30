@@ -2,6 +2,12 @@
 
 RLStreams2 is a plugin for bakkesmod that allows you to record multiple passes (screen, depth map, normal map and a custom pass) and the camera. This ensures that they are lined up properly without having to re-record.
 
+## Requirements
+
+- [ReShade 5.4+](https://reshade.me/) with full add-on support
+- [BakkesMod](https://bakkesplugins.com/)
+- `x264vfw` from [K-Lite Codec Pack (Mega)](https://codecguide.com/download_kl.htm)
+
 ## Installation
 
 1. Download latest version from [Releases](https://github.com/nemuiidere/rlstreams2/releases).
