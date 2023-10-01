@@ -81,18 +81,20 @@ void RLStreams::start_recording(effect_runtime* runtime, device* const device, c
 	// Allocate buffer
 	m_data.bitmap = create_bitmap(m_data.width, m_data.height);
 
-	m_data.avi = CreateAvi(file_name_r.string().c_str(), 1000 / 30, NULL);
+	int frame_period = 1000 / (*cv_fps);
+
+	m_data.avi = CreateAvi(file_name_r.string().c_str(), frame_period, NULL);
 
 	if (*cv_rec_depth) {
-		m_data.avi_d = CreateAvi(file_name_d.string().c_str(), 1000 / 30, NULL);
+		m_data.avi_d = CreateAvi(file_name_d.string().c_str(), frame_period, NULL);
 	}
 
 	if (*cv_rec_normal) {
-		m_data.avi_n = CreateAvi(file_name_n.string().c_str(), 1000 / 30, NULL);
+		m_data.avi_n = CreateAvi(file_name_n.string().c_str(), frame_period, NULL);
 	}
 
 	if (*cv_rec_custom_pass) {
-		m_data.avi_c = CreateAvi(file_name_c.string().c_str(), 1000 / 30, NULL);
+		m_data.avi_c = CreateAvi(file_name_c.string().c_str(), frame_period, NULL);
 	}
 
 	//// Open files
