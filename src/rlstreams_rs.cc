@@ -43,7 +43,7 @@ void RLStreams::on_finish_effects(effect_runtime* runtime, command_list* cmd_lis
 		runtime->get_texture_variable_name(variable, source);
 
 		if (*cv_rec_custom_pass && m_custom_pass_should_apply) {
-			if (std::strcmp(source, "RLStreams_Main") == 0) {
+			if ((*cv_custom_pass_main_buffer && std::strcmp(source, "RLStreams_Main") == 0) || (!(*cv_custom_pass_main_buffer) && std::strcmp(source, "RLStreams_CustomPass") == 0)) {
 				reshade::api::resource_view srv = { 0 };
 				runtime->get_texture_binding(variable, &srv);
 				copy_to_buffer(runtime, device, device->get_resource_from_view(srv));

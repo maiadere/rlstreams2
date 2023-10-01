@@ -3,6 +3,7 @@
 texture RLStreams_Main { Width = BUFFER_WIDTH; Height = BUFFER_HEIGHT; Format = RGBA8; };
 texture RLStreams_Depth { Width = BUFFER_WIDTH; Height = BUFFER_HEIGHT; Format = RGBA8; };
 texture RLStreams_Normal { Width = BUFFER_WIDTH; Height = BUFFER_HEIGHT; Format = RGBA8; };
+texture RLStreams_CustomPass { Width = BUFFER_WIDTH; Height = BUFFER_HEIGHT; Format = RGBA8; };
 
 float3 GetScreenSpaceNormal(float2 texcoord) {
     float3 offset = float3(BUFFER_PIXEL_SIZE, 0.0);
@@ -27,6 +28,14 @@ void PS_Normal(in float4 vpos : SV_Position, in float2 texcoord : TexCoord, out 
 
 void PS_Main(in float4 vpos : SV_Position, in float2 texcoord : TexCoord, out float4 color : SV_Target0) {
     color = float4(tex2D(ReShade::BackBuffer, float2(texcoord.x, 1 - texcoord.y)).bgr, 1.0);
+}
+
+technique RLStreams2_CustomPass {
+    pass {
+        VertexShader = PostProcessVS;
+        PixelShader = PS_Main;
+        RenderTarget0 = RLStreams_CustomPass;
+    }
 }
 
 technique RLStreams2 {

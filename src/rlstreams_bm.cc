@@ -66,6 +66,7 @@ void RLStreams::onLoad() {
 	cv_rec_custom_pass = std::make_shared<bool>(false);
 	cv_rec_custom_pass_preview = std::make_shared<bool>(false);
 	cv_rec_data = std::make_shared<bool>(true);
+	cv_custom_pass_main_buffer = std::make_shared<bool>(true);
 	cv_debug_models = std::make_shared<bool>(false);
 	cv_fps = std::make_shared<int>(30);
 
@@ -81,6 +82,7 @@ void RLStreams::onLoad() {
 	cvarManager->registerCvar("rlstreams_depth", "1", "Record depth map", true, true, 0, true, 1, true).bindTo(cv_rec_depth);
 	cvarManager->registerCvar("rlstreams_normal", "0", "Record normal map", true, true, 0, true, 1, true).bindTo(cv_rec_normal);
 	cvarManager->registerCvar("rlstreams_custom_pass", "0", "Record custom pass", true, true, 0, true, 1, true).bindTo(cv_rec_custom_pass);
+	cvarManager->registerCvar("rlstreams_custom_pass_main_buffer", "1", "Record custom pass from main buffer instead of separate one", true, true, 0, true, 1, true).bindTo(cv_custom_pass_main_buffer);
 	cvarManager->registerCvar("rlstreams_custom_pass_preview", "0", "Preview custom pass", true, true, 0, true, 1, true).bindTo(cv_rec_custom_pass_preview);
 	cvarManager->registerCvar("rlstreams_frame_data", "1", "Record camera, cars and ball data", true, true, 0, true, 1, true).bindTo(cv_rec_data);
 	cvarManager->registerCvar("rlstreams_debug_models", "0", "Debug models", true, true, 0, true, 1, true).bindTo(cv_debug_models);
@@ -462,5 +464,26 @@ void RLStreams::RenderSettings() {
 		if (ImGui::Button("Next")) {
 			cvarManager->executeCommand("rlstreams_debug_models_next");
 		}
+
+		ImGui::Spacing();
+		ImGui::Spacing();
+
+		ImGui::Separator();
+
+		ImGui::Spacing();
+		ImGui::Spacing();
+
+		state = *cv_custom_pass_main_buffer;
+		if (ImGui::Checkbox("Use main buffer", &state)) {
+			cvarManager->getCvar("rlstreams_custom_pass_main_buffer").setValue(state);
+		}
+
+		ImGui::Text(" You can disable this and enable RLStreams2_CustomPass effect in ReShade and put it before other effects in the preset.");
+		ImGui::Text(" This might be useful when you have ReShade preset that modifies colors too much and custom pass becomes unusable.");
+
+		ImGui::Spacing();
+		ImGui::Spacing();
+
+		ImGui::Separator();
 	}
 }

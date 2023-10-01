@@ -125,6 +125,9 @@ private:
 	// CVar for video framerate
 	std::shared_ptr<int> cv_fps;
 
+	// CVar that controls whether custom pass uses main buffer or separate one
+	std::shared_ptr<bool> cv_custom_pass_main_buffer;
+
 private:
 	// Serialized camera, ball and cars data for current frame
 	// 
